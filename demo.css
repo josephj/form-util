@@ -1,0 +1,97 @@
+html, body {
+    background: #000;
+    color: #fff;
+}
+label {
+    font-weight: bold;
+}
+.row {
+    display: table-row;
+    margin-bottom: 10px;
+}
+.row * {
+    vertical-align: top;
+}
+label {
+    display: table-cell;
+    display: inline-block\9;
+    *display: inline-block;
+    padding: 3px;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 150px;
+
+}
+.cell {
+    display: table-cell;
+    width: 220px;
+    padding: 3px;
+}
+textarea,
+input.text {
+    font-size: 123.1%;
+    border: solid 2px #eee;
+    border-radius: 2px;
+    position: relative;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    behavior: url(/static/css3-pie/pie.htc);
+}
+form {
+    border: solid 2px #ff8000;
+    margin: 15px;
+    padding: 10px;
+    position: relative;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    behavior: url(/static/css3-pie/pie.htc);
+}
+h1 {
+    font-size: 200%;
+    font-weight: bold;
+    margin: 25px 25px 0;
+}
+p {
+    font-style: italic;
+    margin: 25px;
+}
+.tip {
+    color: #000;
+    background: #ff8000;
+    padding: 4px;
+    width: 350px;
+    font-size: 93%;
+    position: absolute;
+    left: -1000em;
+    top: -1000em;
+}
+.tip em {
+    font-weight: bold;
+    font-style: italic;
+    color: yellow;
+}
+span.tip-active {
+    display: -moz-inline-box;
+    display: inline-block;
+    text-align: center;
+    position: static;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+xmp {
+    font-size: 93%;
+    font-family: "Courier New";
+    font-weight: bold;
+    background: #333;
+    margin: 0 20px;
+    padding: 10px;
+    position: relative;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    behavior: url(/static/css3-pie/pie.htc);
+    clear: both;
+    zoom: 1;
+}

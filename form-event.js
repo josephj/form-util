@@ -47,7 +47,7 @@ YUI.add("form-util", function (Y) {
             }
 
             // Find out affected items (remove/add, select).
-            if (stateAttr[i].items.activeNodes) {
+            if (stateAttr[i].item && stateAttr[i].items.activeNodes) {
                 diff = _arrayDiff(_stateAttr[i].items["activeNodes"], stateAttr[i].items["activeNodes"]);
                 if (diff.added.length) {
                     affectedNodes.push(Y.one("#" + diff.added[0]));
@@ -55,7 +55,6 @@ YUI.add("form-util", function (Y) {
                 if (diff.removed.length) {
                     affectedNodes.push(Y.one("#" + diff.removed[0]));
                 }
-                alert("hihi");
                 affectedNodes = new Y.NodeList(affectedNodes);
             } else {
                 affectedNodes = this.one("[name=" + stateAttr[i].name + "]");
@@ -105,7 +104,12 @@ YUI.add("form-util", function (Y) {
                 }
                 break;
             default:
-                item = Y.one("[name=" + name + "]");
+                try {
+                    item = Y.one("[name=" + name + "]");
+                } catch (e) { 
+                    Y.log(name + ":" + e.message); 
+                    return;
+                }
             break;
         }
         return items;
@@ -225,7 +229,7 @@ YUI.add("form-util", function (Y) {
             i,
             names = [];
 
-        for (i in el.elements) {
+        for (i = 0, j = el.elements.length; i < j; i++) {
             ele = el.elements[i]
             if (typeof ele.name === "undefined" || !ele.name) {
                 continue;
@@ -308,10 +312,18 @@ YUI.add("form-util", function (Y) {
         var node   = Y.one(node);
 
         // Set IDs
-        var el = Y.Node.getDOMNode(node);
-        for (var i in el.elements) {
-            if (!el.elements[i].id) {
-                el.elements[i].id =  Y.guid();
+        var el = node._node;
+        for (var i = 0, j = el.elements.length; i < j; i++) {
+            if (
+                el.elements[i].nodeName.toLowerCase() !== "textarea" && 
+                el.elements[i].nodeName.toLowerCase() !== "input" && 
+                el.elements[i].nodeName.toLowerCase() !== "button" && 
+                el.elements[i].nodeName.toLowerCase() !== "select"
+            ) { 
+                continue;
+            }
+            if (!el.elements[i].getAttribute("id")) {
+                el.elements[i].setAttribute("id", Y.guid());
             }
         }
 
